@@ -13,9 +13,11 @@ namespace kütüphane_veri_tabanı_01
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        string kimlik;
+        public Form1(string id)
         {
             InitializeComponent();
+            kimlik = id;
         }
         OleDbConnection baglanti = new OleDbConnection("provider=microsoft.jet.oledb.4.0;Data source=kutuphane.mdb");
 
@@ -78,6 +80,46 @@ namespace kütüphane_veri_tabanı_01
         private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Form3 form3=new Form3();
+            form3.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3();
+            form3.Show();
+        }
+
+        private void dataGridView1_CellEnter_1(object sender, DataGridViewCellEventArgs e)
+        {
+            textBox1.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            textBox2.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            textBox3.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            textBox4.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+            textBox5.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+        
+          
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form4 kitap = new Form4(kimlik);
+            kitap.Show();
+            this.Hide();
         }
     }
 }
